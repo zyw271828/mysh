@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
             {
                 printf(PROGRAM_NAME);
                 printf(": cannot create directory \'");
-                printf("%s\': No such file or directory\n", argv[1]);
+                printf("%s\'\n", argv[1]);
             }
         }
         else // A directory with the same name exists
