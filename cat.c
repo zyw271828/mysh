@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define PROGRAM_NAME "cat"
 
@@ -8,7 +9,7 @@ int main(int argc, char *argv[])
 {
     char c;
 
-    if (argv[1] == NULL) // Execute in `cat`
+    if (argv[1] == NULL || strcmp(argv[1], "-") == 0 || strcmp(argv[1], "--") == 0) // Execute in `cat`
     {
         while ((c = getchar()) != EOF)
         {
