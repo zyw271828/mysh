@@ -3,12 +3,12 @@ A lightweight shell.
 
 ## Supported commands
 ```shell
-ls, echo, cat
+ls, echo, cat, mkdir
 ```
 
 ## TODO
 ```shell
-mkdir, rm, cd, pwd, wc, help
+rm, cd, pwd, wc, help
 ```
 
 ```shell
