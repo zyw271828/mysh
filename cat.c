@@ -2,7 +2,7 @@
 
 #define PROGRAM_NAME "cat"
 
-void put_file(char *file_name);
+int put_file(char *file_name);
 
 int main(int argc, char *argv[])
 {
@@ -19,13 +19,17 @@ int main(int argc, char *argv[])
     {
         for (int i = 1; i < argc; i++)
         {
-            put_file(argv[i]);
+            if (put_file(argv[i]) != 0)
+            {
+                printf(PROGRAM_NAME);
+                printf(": %s: No such file or directory\n", argv[i]);
+            }
         }
     }
     return 0;
 }
 
-void put_file(char *file_name)
+int put_file(char *file_name)
 {
     int c;
     FILE *file;
@@ -38,5 +42,10 @@ void put_file(char *file_name)
             putchar(c);
         }
         fclose(file);
+        return 0;
+    }
+    else
+    {
+        return -1;
     }
 }
