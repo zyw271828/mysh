@@ -10,24 +10,45 @@ int main(int argc, char *argv[])
 
     if (argv[1] == NULL) // Execute in `ls`
     {
-        d = opendir(".");
+        if (d = opendir(".")) // Open directory successfully
+        {
+            while ((dir = readdir(d)) != NULL)
+            {
+                printf("%s\n", dir->d_name);
+            }
+            closedir(d);
+        }
+        else // Can not open directory
+        {
+            printf(PROGRAM_NAME);
+            printf(": cannot open directory \'");
+            printf("%s\'\n", argv[1]);
+        }
     }
     else // Execute in `ls DIR`
     {
-        d = opendir(argv[1]);
-    }
-
-    if (d) // Open directory successfully
-    {
-        while ((dir = readdir(d)) != NULL)
+        for (int i = 1; i < argc; i++)
         {
-            printf("%s\n", dir->d_name);
+            if (d = opendir(argv[i])) // Open directory successfully
+            {
+                printf("%s:\n", argv[i]);
+                while ((dir = readdir(d)) != NULL)
+                {
+                    printf("%s\n", dir->d_name);
+                }
+                closedir(d);
+                if (i < argc - 1)
+                {
+                    printf("\n");
+                }
+            }
+            else // Can not open directory
+            {
+                printf(PROGRAM_NAME);
+                printf(": cannot open directory \'");
+                printf("%s\'\n", argv[i]);
+            }
         }
-        closedir(d);
-    }
-    else // Can not open directory
-    {
-        printf("Can not open directory %s\n", argv[1]);
     }
     return 0;
 }
