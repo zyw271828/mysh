@@ -39,10 +39,13 @@ int main(int argc, char *argv[])
         printf("$ ");
 
         // TODO: Auto-completion through tab by using getchar()
-        // FIXME: Infinite loop when Ctrl-D is pressed
         // Convert input to argv array and store it in cmd
         // cmdp are pointers to each argv
-        fgets(input, (MAX_ARGV_NUM) * (MAX_ARGV_LEN), stdin);
+        if ((fgets(input, (MAX_ARGV_NUM) * (MAX_ARGV_LEN), stdin)) == NULL)
+        {
+            printf("exit\n");
+            exit(0);
+        }
         cmds = strtok(input, " \n");
         int cmd_argc = 0;
 
