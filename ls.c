@@ -1,11 +1,14 @@
 #include <dirent.h>
+#include <grp.h>
+#include <pwd.h>
 #include <stdio.h>
 #include <sys/stat.h>
+#include <time.h>
 
 #define PROGRAM_NAME "ls"
 #define MAX_PATH_LEN 1024
 
-int print_permission(char path[], struct dirent *dir);
+int print_file_status(char path[], struct dirent *dir);
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +21,7 @@ int main(int argc, char *argv[])
         {
             while ((dir = readdir(d)) != NULL)
             {
-                print_permission(argv[1], dir);
+                print_file_status(argv[1], dir);
                 printf("%s\n", dir->d_name);
             }
             closedir(d);
@@ -39,7 +42,7 @@ int main(int argc, char *argv[])
                 printf("%s:\n", argv[i]);
                 while ((dir = readdir(d)) != NULL)
                 {
-                    print_permission(argv[i], dir);
+                    print_file_status(argv[i], dir);
                     printf("%s\n", dir->d_name);
                 }
                 closedir(d);
@@ -59,7 +62,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-int print_permission(char path[], struct dirent *dir)
+int print_file_status(char path[], struct dirent *dir)
 {
     char buf[MAX_PATH_LEN];
     struct stat sb;
@@ -75,11 +78,15 @@ int print_permission(char path[], struct dirent *dir)
 
     if (lstat(buf, &sb) == -1)
     {
-        printf("           ");
+        for (int i = 0; i < (11 + 5 + 11 + 11 + 11 + 14); i++)
+        {
+            putchar(' ');
+        }
         return -1;
     }
     else
     {
+        // Print permissions
         printf((S_ISDIR(sb.st_mode)) ? "d" : "-");
         printf((sb.st_mode & S_IRUSR) ? "r" : "-");
         printf((sb.st_mode & S_IWUSR) ? "w" : "-");
@@ -91,6 +98,27 @@ int print_permission(char path[], struct dirent *dir)
         printf((sb.st_mode & S_IWOTH) ? "w" : "-");
         printf((sb.st_mode & S_IXOTH) ? "x" : "-");
         printf(" ");
+
+        // Print number of links
+        printf("%4ld ", sb.st_nlink);
+
+        // Print owner name
+        struct passwd *pw = getpwuid(sb.st_uid);
+        printf("%10s ", pw->pw_name);
+
+        // Print owner group
+        struct group *gr = getgrgid(sb.st_gid);
+        printf("%10s ", gr->gr_name);
+
+        // Print file size
+        printf("%10ld ", sb.st_size);
+
+        // Print time of last modification
+        struct tm lt;
+        localtime_r(&sb.st_mtime, &lt);
+        char timebuf[80];
+        strftime(timebuf, sizeof(timebuf), "%b  %d %H:%M", &lt);
+        printf("%s ", timebuf);
         return 0;
     }
 }
