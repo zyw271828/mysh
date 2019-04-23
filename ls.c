@@ -39,7 +39,10 @@ int main(int argc, char *argv[])
         {
             if ((d = opendir(argv[i])) != NULL) // Open directory successfully
             {
-                printf("%s:\n", argv[i]);
+                if (argc > 2)
+                {
+                    printf("%s:\n", argv[i]);
+                }
                 while ((dir = readdir(d)) != NULL)
                 {
                     print_file_status(argv[i], dir);
