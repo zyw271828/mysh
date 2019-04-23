@@ -116,6 +116,10 @@ int main(int argc, char *argv[])
         else
         {
             printf("%s: command not found\n", cmd[0]);
+            printf("\nYou can try the following commands:\n");
+            printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc\n");
+            printf("\nOr use `man [CMD]...` to view the command manual.\n");
+            printf("       For example: `man ls`\n");
         }
 
         // Clean up the argv array
