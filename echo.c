@@ -32,7 +32,7 @@ void put_string(char *str)
     {
         if (*str == '\\') // May be an escape character
         {
-            *str++;
+            str++;
             switch (*str)
             {
             case 'a':
