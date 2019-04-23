@@ -126,7 +126,6 @@ int main(int argc, char *argv[])
 
 int call_cmd(char *cmd_argv[])
 {
-    pid_t parent = getpid();
     pid_t pid = fork();
 
     if (pid == -1)
@@ -143,4 +142,5 @@ int call_cmd(char *cmd_argv[])
         execv(cmd_argv[0], cmd_argv);
         _exit(EXIT_FAILURE);
     }
+    return 0;
 }
