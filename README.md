@@ -3,14 +3,10 @@ A lightweight shell.
 
 ## Supported commands
 ```shell
-ls, echo, cat, mkdir, rm, cd, pwd, wc
+ls, echo, cat, mkdir, rm, cd, pwd, wc, man
 ```
 
 ## TODO
-```shell
-help
-```
-
 ```shell
 redirection (>, >>), pipe (|), multiple pipes, background process (&)
 ```
