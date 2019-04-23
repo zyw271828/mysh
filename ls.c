@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     if (argv[1] == NULL) // Execute in `ls`
     {
-        if (d = opendir(".")) // Open directory successfully
+        if ((d = opendir(".")) != NULL) // Open directory successfully
         {
             while ((dir = readdir(d)) != NULL)
             {
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     {
         for (int i = 1; i < argc; i++)
         {
-            if (d = opendir(argv[i])) // Open directory successfully
+            if ((d = opendir(argv[i])) != NULL) // Open directory successfully
             {
                 printf("%s:\n", argv[i]);
                 while ((dir = readdir(d)) != NULL)
