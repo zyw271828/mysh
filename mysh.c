@@ -103,11 +103,6 @@ int main(int argc, char *argv[])
             (*cmdp)[0] = MYSH "rm";
             call_cmd(cmdp[0]);
         }
-        else if (strcmp(cmd[0], "cd") == 0)
-        {
-            (*cmdp)[0] = MYSH "cd";
-            call_cmd(cmdp[0]);
-        }
         else if (strcmp(cmd[0], "wc") == 0)
         {
             (*cmdp)[0] = MYSH "wc";

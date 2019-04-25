@@ -100,9 +100,6 @@ int main(int argc, char *argv[])
                 printf("       rm removes each specified file, including directory. But it does not remove\n");
                 printf("       non-empty directories.\n");
             }
-            else if (strcmp(argv[i], "cd") == 0)
-            {
-            }
             else if (strcmp(argv[i], "wc") == 0)
             {
             }
