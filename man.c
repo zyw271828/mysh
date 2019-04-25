@@ -102,9 +102,24 @@ int main(int argc, char *argv[])
             }
             else if (strcmp(argv[i], "wc") == 0)
             {
+                printf("NAME\n");
+                printf("       wc - print newline, word, and byte counts for each file\n\n");
+                printf("SYNOPSIS\n");
+                printf("       wc [FILE]...\n\n");
+                printf("DESCRIPTION\n");
+                printf("       Print newline, word, and byte counts for each FILE, and a total line if\n");
+                printf("       more than one FILE is specified. A word is a non-zero-length sequence\n");
+                printf("       of characters delimited by white space.\n\n");
+                printf("       With no FILE, or when FILE is -, read standard input.\n");
             }
             else if (strcmp(argv[i], "man") == 0)
             {
+                printf("NAME\n");
+                printf("       man - view reference manuals for commands\n\n");
+                printf("SYNOPSIS\n");
+                printf("       man [CMD]...\n\n");
+                printf("DESCRIPTION\n");
+                printf("       For each specified command, man prints its reference manual.\n");
             }
             else
             {
