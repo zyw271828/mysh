@@ -113,6 +113,11 @@ int main(int argc, char *argv[])
             (*cmdp)[0] = MYSH "man";
             call_cmd(cmdp[0]);
         }
+        else if (strcmp(cmd[0], "exit") == 0)
+        {
+            printf("exit\n");
+            exit(0);
+        }
         else
         {
             printf("%s: command not found\n", cmd[0]);
