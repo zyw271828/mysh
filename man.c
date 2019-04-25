@@ -27,9 +27,10 @@ int main(int argc, char *argv[])
                 printf("       cd [directory]\n\n");
                 printf("DESCRIPTION\n");
                 printf("       The cd command can change the current working directory.\n\n");
-                printf("       If no directory operand is given and the HOME environment variable is set to a\n");
-                printf("       non-empty value, the cd utility shall behave as if the directory named in the\n");
-                printf("       HOME environment variable was specified as the directory operand.\n");
+                printf("       If no directory operand is given and the HOME environment variable is set\n");
+                printf("       to a non-empty value, the cd utility shall behave as if the directory\n");
+                printf("       named in the HOME environment variable was specified as the directory\n");
+                printf("       operand.\n");
             }
             else if (strcmp(argv[i], "pwd") == 0)
             {
@@ -48,8 +49,8 @@ int main(int argc, char *argv[])
                 printf("       ls [directory]\n\n");
                 printf("DESCRIPTION\n");
                 printf("       List information about the FILEs (the current directory by default).\n\n");
-                printf("       The meaning of each field is: file permissions, number of links, owner name,\n");
-                printf("       owner group, file size, time of last modification, file name.\n");
+                printf("       The meaning of each field is: file permissions, number of links, owner\n");
+                printf("       name, owner group, file size, time of last modification, file name.\n");
             }
             else if (strcmp(argv[i], "echo") == 0)
             {
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
                 printf("       echo [STRING]...\n\n");
                 printf("DESCRIPTION\n");
                 printf("       Echo the STRING(s) to standard output.\n\n");
-                printf("       The following sequences are recognized:\n");
+                printf("       The following sequences are recognized:\n\n");
                 printf("       \\\\     backslash\n");
                 printf("       \\a     alert (BEL)\n");
                 printf("       \\b     backspace\n");
@@ -97,8 +98,8 @@ int main(int argc, char *argv[])
                 printf("SYNOPSIS\n");
                 printf("       rm [FILE]...\n\n");
                 printf("DESCRIPTION\n");
-                printf("       rm removes each specified file, including directory. But it does not remove\n");
-                printf("       non-empty directories.\n");
+                printf("       rm removes each specified file, including directory. But it does not\n");
+                printf("       remove non-empty directories.\n");
             }
             else if (strcmp(argv[i], "wc") == 0)
             {
