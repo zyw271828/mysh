@@ -53,15 +53,52 @@ int main(int argc, char *argv[])
             }
             else if (strcmp(argv[i], "echo") == 0)
             {
+                printf("NAME\n");
+                printf("       echo - display a line of text\n\n");
+                printf("SYNOPSIS\n");
+                printf("       echo [STRING]...\n\n");
+                printf("DESCRIPTION\n");
+                printf("       Echo the STRING(s) to standard output.\n\n");
+                printf("       The following sequences are recognized:\n");
+                printf("       \\\\     backslash\n");
+                printf("       \\a     alert (BEL)\n");
+                printf("       \\b     backspace\n");
+                printf("       \\c     produce no further output\n");
+                printf("       \\e     escape\n");
+                printf("       \\f     form feed\n");
+                printf("       \\n     new line\n");
+                printf("       \\r     carriage return\n");
+                printf("       \\t     horizontal tab\n");
+                printf("       \\v     vertical tab\n");
             }
             else if (strcmp(argv[i], "cat") == 0)
             {
+                printf("NAME\n");
+                printf("       cat - concatenate files and print on the standard output\n\n");
+                printf("SYNOPSIS\n");
+                printf("       cat [FILE]...\n\n");
+                printf("DESCRIPTION\n");
+                printf("       Concatenate FILE(s) to standard output.\n\n");
+                printf("       With no FILE, or when FILE is -, read standard input.\n");
             }
             else if (strcmp(argv[i], "mkdir") == 0)
             {
+                printf("NAME\n");
+                printf("       mkdir - make directories\n\n");
+                printf("SYNOPSIS\n");
+                printf("       mkdir DIRECTORY...\n\n");
+                printf("DESCRIPTION\n");
+                printf("       Create the DIRECTORY(ies), if they do not already exist.\n");
             }
             else if (strcmp(argv[i], "rm") == 0)
             {
+                printf("NAME\n");
+                printf("       rm - remove files or directories\n\n");
+                printf("SYNOPSIS\n");
+                printf("       rm [FILE]...\n\n");
+                printf("DESCRIPTION\n");
+                printf("       rm removes each specified file, including directory. But it does not remove\n");
+                printf("       non-empty directories.\n");
             }
             else if (strcmp(argv[i], "cd") == 0)
             {
