@@ -3,7 +3,7 @@ A lightweight shell.
 
 ## Supported commands
 ```shell
-ls, echo, cat, mkdir, rm, cd, pwd, wc, man
+ls, echo, cat, mkdir, rm, cd, pwd, wc, clear, man
 ```
 
 ## TODO

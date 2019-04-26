@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     if (argv[1] == NULL) // Execute in `man`
     {
         printf("You can try the following commands:\n");
-        printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc\n");
+        printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc, clear\n");
         printf("\nOr use `man [CMD]...` to view the command manual.\n");
         printf("       For example: `man ls`\n");
     }
@@ -113,6 +113,16 @@ int main(int argc, char *argv[])
                 printf("       of characters delimited by white space.\n\n");
                 printf("       With no FILE, or when FILE is -, read standard input.\n");
             }
+            else if (strcmp(argv[i], "clear") == 0)
+            {
+                printf("NAME\n");
+                printf("       clear - clear the terminal screen\n\n");
+                printf("SYNOPSIS\n");
+                printf("       clear\n\n");
+                printf("DESCRIPTION\n");
+                printf("       clear clears your screen if this is possible, including its scrollback\n");
+                printf("       buffer.\n");
+            }
             else if (strcmp(argv[i], "man") == 0)
             {
                 printf("NAME\n");
@@ -132,7 +142,7 @@ int main(int argc, char *argv[])
         if (mnf)
         {
             printf("\nYou can try the following commands:\n");
-            printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc\n");
+            printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc, clear\n");
             printf("\nOr use `man [CMD]...` to view the command manual.\n");
             printf("       For example: `man ls`\n");
             mnf = 0;
