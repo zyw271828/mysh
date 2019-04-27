@@ -117,6 +117,11 @@ int main(int argc, char *argv[])
         {
             printf("\033[H\033[2J\033[3J");
         }
+        else if (strcmp(cmd[0], "sleep") == 0)
+        {
+            (*cmdp)[0] = MYSH "sleep";
+            call_cmd(cmdp[0]);
+        }
         else if (strcmp(cmd[0], "exit") == 0)
         {
             printf("exit\n");
@@ -126,7 +131,7 @@ int main(int argc, char *argv[])
         {
             printf("%s: command not found\n", cmd[0]);
             printf("\nYou can try the following commands:\n");
-            printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc, clear\n");
+            printf("       ls, echo, cat, mkdir, rm, cd, pwd, wc, clear, sleep\n");
             printf("\nOr use `man [CMD]...` to view the command manual.\n");
             printf("       For example: `man ls`\n");
         }

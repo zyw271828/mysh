@@ -10,7 +10,7 @@ default: $(TARGET)
 
 all: default
 
-$(TARGET): mysh.c cat echo ls mkdir rm wc man
+$(TARGET): mysh.c cat echo ls mkdir rm wc sleep man
 	$(CC) mysh.c $(CFLAGS) $(LIBS) -o $@
 
 cat: cat.c
@@ -31,6 +31,9 @@ rm: rm.c
 wc: wc.c
 	$(CC) wc.c $(CFLAGS) $(LIBS) -o $@
 
+sleep: sleep.c
+	$(CC) sleep.c $(CFLAGS) $(LIBS) -o $@
+
 man: man.c
 	$(CC) man.c $(CFLAGS) $(LIBS) -o $@
 
@@ -42,4 +45,5 @@ clean:
 	$(RM) mkdir
 	$(RM) rm
 	$(RM) wc
+	$(RM) sleep
 	$(RM) man
