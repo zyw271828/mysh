@@ -5,8 +5,11 @@ A lightweight shell.
 ```shell
 ls, echo, cat, mkdir, rm, cd, pwd, wc, clear, sleep, man
 ```
+```shell
+background process (&)
+```
 
 ## TODO
 ```shell
-redirection (>, >>), pipe (|), multiple pipes, background process (&)
+redirection (>, >>), pipe (|), multiple pipes
 ```

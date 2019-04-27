@@ -11,7 +11,7 @@
 #define MAX_ARGV_LEN 1000
 #define MAX_PATH_LEN 1024
 
-int call_cmd(char *cmd_argv[]);
+int call_cmd(char *cmd_argv[], int background);
 
 int main(int argc, char *argv[])
 {
@@ -57,6 +57,14 @@ int main(int argc, char *argv[])
             cmds = strtok(NULL, " \n");
         }
 
+        int background = 0;
+
+        if (strcmp(cmd[cmd_argc - 1], "&") == 0)
+        {
+            background = 1;
+            (*cmdp)[cmd_argc - 1] = NULL;
+        }
+
         // Find the command to be executed
         if (strcmp(cmd[0], "cd") == 0)
         {
@@ -81,37 +89,37 @@ int main(int argc, char *argv[])
         else if (strcmp(cmd[0], "ls") == 0)
         {
             (*cmdp)[0] = MYSH "ls";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "echo") == 0)
         {
             (*cmdp)[0] = MYSH "echo";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "cat") == 0)
         {
             (*cmdp)[0] = MYSH "cat";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "mkdir") == 0)
         {
             (*cmdp)[0] = MYSH "mkdir";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "rm") == 0)
         {
             (*cmdp)[0] = MYSH "rm";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "wc") == 0)
         {
             (*cmdp)[0] = MYSH "wc";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "man") == 0)
         {
             (*cmdp)[0] = MYSH "man";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "clear") == 0)
         {
@@ -120,7 +128,7 @@ int main(int argc, char *argv[])
         else if (strcmp(cmd[0], "sleep") == 0)
         {
             (*cmdp)[0] = MYSH "sleep";
-            call_cmd(cmdp[0]);
+            call_cmd(cmdp[0], background);
         }
         else if (strcmp(cmd[0], "exit") == 0)
         {
@@ -145,23 +153,45 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-int call_cmd(char *cmd_argv[])
+int call_cmd(char *cmd_argv[], int background)
 {
-    pid_t pid = fork();
+    pid_t pid = -1;
 
-    if (pid == -1)
+    if (background) // Run in background
     {
-        printf("Error, failed to fork()\n");
+        if ((pid = fork()) == -1)
+        {
+            printf("Error, failed to fork()\n");
+        }
+        else if (pid > 0) // Parent process
+        {
+            int status;
+            printf("[Background] %d\n", pid);
+            waitpid(-1, &status, WNOHANG | WUNTRACED);
+        }
+        else // Child process
+        {
+            setsid();
+            execv(cmd_argv[0], cmd_argv);
+            _exit(EXIT_FAILURE);
+        }
     }
-    else if (pid > 0) // Parent process
+    else // Run in foreground
     {
-        int status;
-        waitpid(pid, &status, 0);
-    }
-    else // Child process
-    {
-        execv(cmd_argv[0], cmd_argv);
-        _exit(EXIT_FAILURE);
+        if ((pid = fork()) == -1)
+        {
+            printf("Error, failed to fork()\n");
+        }
+        else if (pid > 0) // Parent process
+        {
+            int status;
+            waitpid(pid, &status, 0);
+        }
+        else // Child process
+        {
+            execv(cmd_argv[0], cmd_argv);
+            _exit(EXIT_FAILURE);
+        }
     }
     return 0;
 }
