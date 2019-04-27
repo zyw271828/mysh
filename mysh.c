@@ -46,6 +46,11 @@ int main(int argc, char *argv[])
             printf("exit\n");
             exit(0);
         }
+        if (strcmp(input, "\n") == 0)
+        {
+            continue;
+        }
+
         cmds = strtok(input, " \n");
         int cmd_argc = 0;
 
