@@ -49,8 +49,9 @@ int main(int argc, char *argv[])
                 printf("       ls [directory]\n\n");
                 printf("DESCRIPTION\n");
                 printf("       List information about the FILEs (the current directory by default).\n\n");
-                printf("       The meaning of each field is: file permissions, number of links, owner\n");
-                printf("       name, owner group, file size, time of last modification, file name.\n");
+                printf("       The meaning of each field is: file types, file permissions, number of\n");
+                printf("       links, owner name, owner group, file size, time of last modification,\n");
+                printf("       file name.\n");
             }
             else if (strcmp(argv[i], "echo") == 0)
             {
