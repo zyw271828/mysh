@@ -89,8 +89,41 @@ int print_file_status(char path[], struct dirent *dir)
     }
     else
     {
+        // Print type
+        if (S_ISREG(sb.st_mode))
+        {
+            printf("-");
+        }
+        else if (S_ISDIR(sb.st_mode))
+        {
+            printf("d");
+        }
+        else if (S_ISCHR(sb.st_mode))
+        {
+            printf("c");
+        }
+        else if (S_ISBLK(sb.st_mode))
+        {
+            printf("b");
+        }
+        else if (S_ISFIFO(sb.st_mode))
+        {
+            printf("p");
+        }
+        else if (S_ISLNK(sb.st_mode))
+        {
+            printf("l");
+        }
+        else if (S_ISSOCK(sb.st_mode))
+        {
+            printf("s");
+        }
+        else
+        {
+            printf("?");
+        }
+
         // Print permissions
-        printf((S_ISDIR(sb.st_mode)) ? "d" : "-");
         printf((sb.st_mode & S_IRUSR) ? "r" : "-");
         printf((sb.st_mode & S_IWUSR) ? "w" : "-");
         printf((sb.st_mode & S_IXUSR) ? "x" : "-");
